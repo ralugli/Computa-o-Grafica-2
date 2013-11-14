@@ -17,6 +17,7 @@ public class Janela extends JFrame {
 	// Componentes
 	private Menu menu = new Menu();
 	private AreaPrincipal areaPrincipal = new AreaPrincipal();
+	private BarraStatus barraStatus = new BarraStatus();
 
 	public Janela() {
 		interfaceUsuario();
@@ -45,7 +46,8 @@ public class Janela extends JFrame {
 					
 					// Componentes
 					setJMenuBar(menu.getBarraMenu());
-					add(areaPrincipal);
+					getContentPane().add(areaPrincipal);
+					getContentPane().add(barraStatus);
 				}
 			}
 		} catch (Exception e) {

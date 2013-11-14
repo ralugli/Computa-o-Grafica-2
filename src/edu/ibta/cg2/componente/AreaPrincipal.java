@@ -1,5 +1,6 @@
 package edu.ibta.cg2.componente;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
@@ -22,6 +23,7 @@ public class AreaPrincipal extends JPanel implements MouseListener, MouseMotionL
 		setPreferredSize(new Dimension(LARGURA,ALTURA));
 		setMaximumSize(new Dimension(LARGURA,ALTURA));
 		setMinimumSize(new Dimension(LARGURA,ALTURA));
+		setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 		
 		setLayout(new FlowLayout());
 		
@@ -58,6 +60,8 @@ public class AreaPrincipal extends JPanel implements MouseListener, MouseMotionL
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
+		
+		BarraStatus.atualCoordenadas(x, y);
 		
 		System.out.println("X: "+ x + " Y: "+ y);
 	}
