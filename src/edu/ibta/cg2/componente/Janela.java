@@ -1,5 +1,8 @@
 package edu.ibta.cg2.componente;
 
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -8,10 +11,13 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class Janela extends JFrame {
 
 	private static final long serialVersionUID = -4658786359260670722L;
-	private final int LARGURA = 1200;
-	private final int ALTURA = 700;
+	private static int LARGURA = 1200;
+	private static int ALTURA = 700;
+
+	// Componentes
 	private Menu menu = new Menu();
-	
+	private AreaPrincipal areaPrincipal = new AreaPrincipal();
+
 	public Janela() {
 		interfaceUsuario();
 	}
@@ -26,17 +32,33 @@ public class Janela extends JFrame {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					UIManager.setLookAndFeel(info.getClassName());
+					
+					getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+					
+					// Propriedades da Janela
 					setTitle("AUTOCADEMICO");
 					setSize(LARGURA, ALTURA);
+					setResizable(false);
 					setLocationRelativeTo(null);
-					setJMenuBar(menu.getBarraMenu());
 					setDefaultCloseOperation(EXIT_ON_CLOSE);
 					setVisible(true);
-					break;
+					
+					// Componentes
+					setJMenuBar(menu.getBarraMenu());
+					add(areaPrincipal);
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
+			JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
 		}
 	}
+
+	public static int getLARGURA() {
+		return LARGURA;
+	}
+
+	public static int getALTURA() {
+		return ALTURA;
+	}
+	
 }
