@@ -9,7 +9,6 @@ Arquivo
   - Espelhamento
   - Rotação
   - Translação
-  - Translação
   - Cisalhamento
 
  3D
