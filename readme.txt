@@ -4,7 +4,7 @@ Arquivo
  - Sair
 
  2D
-  - Area do polígono
+  - Área do polígono
   - Escala
   - Espelhamento
   - Rotação
@@ -21,5 +21,5 @@ Arquivo
 
   AUTOMÁTICO (Após terminar a figura)
 
-  Calcular área
-  Identificar vertices concovas ou convexos.
+  - Calcular área
+  - Identificar vértices côncovos ou convexos
