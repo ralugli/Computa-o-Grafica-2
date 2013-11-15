@@ -22,4 +22,4 @@ Arquivo
   AUTOMÁTICO (Após terminar a figura)
 
   - Calcular área
-  - Identificar vértices côncovos ou convexos
+  - Identificar vértices côncavos ou convexos
