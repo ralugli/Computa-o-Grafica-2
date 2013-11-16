@@ -23,4 +23,6 @@ public class Ponto {
 		this.y = y;
 	}
 	
+	
+	
 }
