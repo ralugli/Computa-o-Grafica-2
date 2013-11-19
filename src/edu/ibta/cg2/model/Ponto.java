@@ -2,8 +2,8 @@ package edu.ibta.cg2.model;
 
 public class Ponto {
 	
-	int x;
-	int y;
+	private int x;
+	private int y;
 	
 	public Ponto(int x, int y){
 		setX(x);
