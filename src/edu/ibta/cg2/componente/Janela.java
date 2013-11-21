@@ -52,6 +52,7 @@ public class Janela extends JFrame {
 					setJMenuBar(menu.getBarraMenu());
 					getContentPane().add(areaPrincipal, BorderLayout.NORTH);
 					getContentPane().add(barraStatus, BorderLayout.SOUTH);
+					
 				}
 			}
 		} catch (Exception e) {

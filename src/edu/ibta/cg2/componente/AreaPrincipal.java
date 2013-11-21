@@ -7,8 +7,6 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -22,15 +20,12 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	private int ALTURA = Integer.parseInt(Math.round(Janela.getALTURA() * 0.88)
 			+ "");
 
-	private List<Ponto> poligono;
-	private final int PONTOS_MAXIMOS = 3;
-
 	public AreaPrincipal() {
 
-		poligono = new ArrayList<Ponto>();
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
+		setLayout(null);
 		setBackground(Color.lightGray);
 		setPreferredSize(new Dimension(LARGURA, ALTURA));
 		setMaximumSize(new Dimension(LARGURA, ALTURA));
@@ -41,15 +36,15 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		Ponto ponto;
 		int xPos = e.getX();
 		int yPos = e.getY();
-		if (poligono.size() < PONTOS_MAXIMOS) {
-			ponto = new Ponto(xPos, yPos);
-			poligono.add(ponto);
-			repaint();
-		}
+
+		// Marcação
+		Marcacao marcacao = new Marcacao(xPos, yPos, 0);
+		marcacao.setBounds(xPos-10, yPos-10, 20, 20);
+		add(marcacao);
+		
 	}
 
 	@Override
@@ -81,7 +76,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 		BarraStatus.atualCoordenadas(xPos, yPos);
 
-		System.out.println("X: " + xPos + " Y: " + yPos);
+		// System.out.println("X: " + xPos + " Y: " + yPos);
 	}
 
 	@Override
@@ -90,21 +85,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	}
 
 	public void paintComponent(Graphics g) {
-		int x[] = new int[poligono.size()];
-		int y[] = new int[poligono.size()];
-
 		super.paintComponent(g);
-
-		for (int i = 0; i < poligono.size(); i++)
-			g.fillOval((poligono.get(i).getX() - 5), (poligono.get(i).getY() - 5), 10, 10);
-
-		for (int i = 0; i < poligono.size(); i++) {
-			x[i] = poligono.get(i).getX();
-			y[i] = poligono.get(i).getY();
-		}
-
-		if(poligono.size() == 3)
-			g.drawPolygon(x, y, poligono.size());
 	}
 
 }
