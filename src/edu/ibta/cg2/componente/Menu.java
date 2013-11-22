@@ -48,15 +48,17 @@ public class Menu {
 		int contador = 0;
 		if (itensArquivo == null) {
 			itensArquivo = new ArrayList<JMenuItem>();
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 4; i++)
 				itensArquivo.add(new JMenuItem());
+			itensArquivo.get(contador).setText("Novo");
+			itensArquivo.get(contador++).setMnemonic(KeyEvent.VK_N);
 			itensArquivo.get(contador).setText("Abrir");
 			itensArquivo.get(contador++).setMnemonic(KeyEvent.VK_S);
 			itensArquivo.get(contador).setText("Salvar");
 			itensArquivo.get(contador++).setMnemonic(KeyEvent.VK_L);
 			itensArquivo.get(contador).setText("Sair");
 			itensArquivo.get(contador++).setMnemonic(KeyEvent.VK_I);
-			sair(itensArquivo.get(2));
+			sair(itensArquivo.get(3));
 		}
 		return itensArquivo;
 	}
@@ -78,10 +80,12 @@ public class Menu {
 		int contador = 0;
 		if (itens2D == null) {
 			itens2D = new ArrayList<JMenuItem>();
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 5; i++)
 				itens2D.add(new JMenuItem());
 			itens2D.get(contador).setText("Transladar");
 			itens2D.get(contador++).setMnemonic(KeyEvent.VK_T);
+			itens2D.get(contador).setText("Espelhar");
+			itens2D.get(contador++).setMnemonic(KeyEvent.VK_S);
 			itens2D.get(contador).setText("Escalonar");
 			itens2D.get(contador++).setMnemonic(KeyEvent.VK_E);
 			itens2D.get(contador).setText("Rotacionar");
@@ -140,9 +144,5 @@ public class Menu {
 								"AUTOCADÊMICO", JOptionPane.PLAIN_MESSAGE, null);
 			}
 		});
-		
-		// Menu
-		
 	}
-
 }

@@ -10,56 +10,69 @@ import javax.swing.JButton;
 
 public class Marcacao extends JButton {
 
-	private Color bgcor = Color.lightGray;
-	private int circuferencia = 20;
-	protected int posicaoX;
-	protected int posicaoY;
+	private static final long serialVersionUID = -5754569411789624121L;
+	private final int DIAMETRO = 20;
+	private Color bgcor;
+	private int posicaoX;
+	private int posicaoY;
 
-	/*
-	 * Tipo de Ponto 0 - Côncavo 1 - Convexo
+	/**
+	 * @param tipoPonto
+	 *            - 0 - Côncavo 1 - Convexo
 	 */
 	public Marcacao(int posicaoX, int posicaoY, int tipoPonto) {
 		super("");
-		
+
 		this.posicaoX = posicaoX;
 		this.posicaoY = posicaoY;
 
 		switch (tipoPonto) {
 		case 0:
-			this.bgcor = Color.green;
+			this.bgcor = Color.GREEN;
 			break;
 		case 1:
-			this.bgcor = Color.red;
+			this.bgcor = Color.RED;
 			break;
 		}
+		
+		formaBotao();
 
+	}
+
+	public Marcacao(int posicaoX, int posicaoY) {
+		super("");
+
+		this.posicaoX = posicaoX;
+		this.posicaoY = posicaoY;
+		this.bgcor = Color.DARK_GRAY;
+		
+		formaBotao();
+	}
+	
+	private void formaBotao() {
 		Dimension size = getPreferredSize();
-		size.width = circuferencia;
-		size.height = circuferencia;
+		size.width = DIAMETRO;
+		size.height = DIAMETRO;
 		setPreferredSize(size);
 
 		setContentAreaFilled(false);
-		
-		addMouseListener(new MouseAdapter() {
-			
-			public void mousePressed(MouseEvent e)
-            {
-				int xPos = e.getX();
-				int yPos = e.getY();
 
-				System.out.println("X: " + getPosicaoX() + " Y: " + getPosicaoY());
-            }
-			
+		addMouseListener(new MouseAdapter() {
+
+			public void mousePressed(MouseEvent e) {
+				// int xPos = e.getX();
+				// int yPos = e.getY();
+
+				System.out.println("X: " + getPosicaoX() + " Y: "
+						+ getPosicaoY());
+			}
+
 		});
-		
 	}
 
 	protected void paintComponent(Graphics g) {
-		if (getModel().isArmed()) {
-			g.setColor(Color.lightGray);
-		} else {
-			g.setColor(bgcor);
-		}
+		
+		g.setColor(bgcor);
 		g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
 
 		super.paintComponent(g);
@@ -85,7 +98,5 @@ public class Marcacao extends JButton {
 	public void setPosicaoY(int posicaoY) {
 		this.posicaoY = posicaoY;
 	}
-	
-	
-	
+
 }

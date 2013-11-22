@@ -10,7 +10,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
-import edu.ibta.cg2.model.Ponto;
+// import edu.ibta.cg2.model.Ponto;
 
 public class AreaPrincipal extends JPanel implements MouseListener,
 		MouseMotionListener {
@@ -36,15 +36,17 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Ponto ponto;
-		int xPos = e.getX();
-		int yPos = e.getY();
+		// Ponto ponto;
+		int xPos = e.getX() - 10;
+		int yPos = e.getY() - 10;
 
 		// Marcação
-		Marcacao marcacao = new Marcacao(xPos, yPos, 0);
-		marcacao.setBounds(xPos-10, yPos-10, 20, 20);
+		Marcacao marcacao = new Marcacao(xPos, yPos);
+		marcacao.setBounds(xPos, yPos, 20, 20);
 		add(marcacao);
-		
+		validate();
+		repaint();
+
 	}
 
 	@Override
