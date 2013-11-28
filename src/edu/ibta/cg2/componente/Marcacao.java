@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -51,6 +50,8 @@ public class Marcacao extends JButton {
 		this.posicaoY = posicaoY;
 		this.bgcor = Color.DARK_GRAY;
 		
+//		paintLines(AreaPrincipal.poligono);
+		
 		formaBotao();
 	}
 	
@@ -85,24 +86,39 @@ public class Marcacao extends JButton {
 		g.setColor(getForeground());
 		g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
 	}
-	
-	protected void paintLines(Poligono poligono, Graphics g){
+		
+	static void paintLines(Poligono poligono, Graphics g){
 		
 		int max = poligono.numeroPontos();
 		
-		if(poligono.numeroPontos() > 1){
+		if(max > 1){
 	
-			Ponto ultimo_ponto = poligono.retornaPonto(max);
-			Ponto penultimo = poligono.retornaPonto(max-1);
-				
+			Ponto ultimo_ponto = poligono.retornaPonto(max-1);
+			Ponto penultimo = poligono.retornaPonto(max-2);
+			
+			System.out.println(ultimo_ponto.getX() + " " + ultimo_ponto.getY() );
+			System.out.println(penultimo.getX() + " " + penultimo.getY() );
+			
 			g.drawLine(penultimo.getX(), penultimo.getY(), ultimo_ponto.getX(), ultimo_ponto.getY());	     
 		}
 		
 	}
 	
-	protected void paintLineAll(Poligono poligono){
+	protected void paintLineAll(Poligono poligono, Graphics g){
 		List<Ponto> pontos = poligono.getPontos();
-		for(Ponto p : pontos){}
+		int max = poligono.numeroPontos();
+		
+		if(max > 2){
+			for(Ponto p : pontos){
+				
+				if( pontos.size() >= 2){
+					g.drawLine(p.getX(), p.getY(), p.getX() + 1, p.getY());
+					pontos.remove(0);
+				}else if(pontos.size() == 1){
+					
+				}
+			}
+		}
 	}
 
 	/* GET e SET

@@ -16,7 +16,7 @@ import edu.ibta.cg2.model.Ponto;
 public class AreaPrincipal extends JPanel implements MouseListener,
 		MouseMotionListener {
 
-	private Poligono poligono;
+	static Poligono poligono;
 	private Ponto ponto;
 	private static final long serialVersionUID = -6341888414590484470L;
 	private int LARGURA = Janela.getLARGURA();
@@ -42,19 +42,24 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
+		Graphics g = (Graphics) this.getGraphics();
+		
 		// Ponto ponto;
-		int xPos = e.getX() - 10;
-		int yPos = e.getY() - 10;
+		int xPos = e.getX();
+		int yPos = e.getY();
 
 		ponto = new Ponto(xPos, yPos);
 		poligono.adicionaPonto(ponto);
 
 		// Marcação
 		Marcacao marcacao = new Marcacao(xPos, yPos);
-		marcacao.setBounds(xPos, yPos, 20, 20);
+		marcacao.setBounds(xPos -10, yPos -10, 20, 20);
 		add(marcacao);
+		
+		Marcacao.paintLines(poligono, g);
+		
 		validate();
-		repaint();
+//		repaint();
 
 	}
 
