@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 public class Menu {
-	
+
 	private JMenuBar barraMenu;
 	private JMenu menuArquivo;
 	private JMenu menu2D;
@@ -20,7 +20,7 @@ public class Menu {
 	private List<JMenuItem> itensArquivo;
 	private List<JMenuItem> itens2D;
 	private List<JMenuItem> itensAjuda;
-	
+
 	public JMenuBar getBarraMenu() {
 		if (barraMenu == null) {
 			barraMenu = new JMenuBar();

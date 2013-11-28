@@ -10,11 +10,14 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
-// import edu.ibta.cg2.model.Ponto;
+import edu.ibta.cg2.model.Poligono;
+import edu.ibta.cg2.model.Ponto;
 
 public class AreaPrincipal extends JPanel implements MouseListener,
 		MouseMotionListener {
 
+	private Poligono poligono;
+	private Ponto ponto;
 	private static final long serialVersionUID = -6341888414590484470L;
 	private int LARGURA = Janela.getLARGURA();
 	private int ALTURA = Integer.parseInt(Math.round(Janela.getALTURA() * 0.88)
@@ -32,13 +35,19 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		setMinimumSize(new Dimension(LARGURA, ALTURA));
 		setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 
+		poligono = new Poligono();
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		// Ponto ponto;
 		int xPos = e.getX() - 10;
 		int yPos = e.getY() - 10;
+
+		ponto = new Ponto(xPos, yPos);
+		poligono.adicionaPonto(ponto);
 
 		// Marcação
 		Marcacao marcacao = new Marcacao(xPos, yPos);
@@ -51,25 +60,21 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -77,13 +82,10 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		int yPos = e.getY();
 
 		BarraStatus.atualCoordenadas(xPos, yPos);
-
-		// System.out.println("X: " + xPos + " Y: " + yPos);
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	public void paintComponent(Graphics g) {

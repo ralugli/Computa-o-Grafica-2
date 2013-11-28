@@ -65,9 +65,7 @@ public class Marcacao extends JButton {
 		addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
-				// int xPos = e.getX();
-				// int yPos = e.getY();
-
+				
 				System.out.println("X: " + getPosicaoX() + " Y: "
 						+ getPosicaoY());
 			}
