@@ -5,8 +5,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
+
+import edu.ibta.cg2.model.Poligono;
+import edu.ibta.cg2.model.Ponto;
 
 public class Marcacao extends JButton {
 
@@ -82,7 +87,29 @@ public class Marcacao extends JButton {
 		g.setColor(getForeground());
 		g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
 	}
+	
+	protected void paintLines(Poligono poligono, Graphics g){
+		
+		int max = poligono.numeroPontos();
+		
+		if(poligono.numeroPontos() > 1){
+	
+			Ponto ultimo_ponto = poligono.retornaPonto(max);
+			Ponto penultimo = poligono.retornaPonto(max-1);
+				
+			g.drawLine(penultimo.getX(), penultimo.getY(), ultimo_ponto.getX(), ultimo_ponto.getY());	     
+		}
+		
+	}
+	
+	protected void paintLineAll(Poligono poligono){
+		List<Ponto> pontos = poligono.getPontos();
+		for(Ponto p : pontos){}
+	}
 
+	/* GET e SET
+	 * */
+	
 	public int getPosicaoX() {
 		return posicaoX;
 	}
