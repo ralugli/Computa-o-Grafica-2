@@ -91,7 +91,7 @@ public class Marcacao extends JButton {
 		
 		int max = poligono.numeroPontos();
 		
-		if(max > 1){
+		if(max > 1) {
 	
 			Ponto ultimo_ponto = poligono.retornaPonto(max-1);
 			Ponto penultimo = poligono.retornaPonto(max-2);
