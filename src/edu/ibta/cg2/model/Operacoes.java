@@ -1,6 +1,5 @@
 package edu.ibta.cg2.model;
 
-
 public class Operacoes {
 
 	private static int pontoX;
@@ -94,7 +93,7 @@ public class Operacoes {
 	public static Poligono translacao(Poligono poligono, int distancia) {
 
 		pol = new Poligono();
-		
+
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
 			pontoX = poligono.retornaPonto(i).getX() + distancia;
 			pontoY = poligono.retornaPonto(i).getY() + distancia;
@@ -156,53 +155,52 @@ public class Operacoes {
 
 		return pol;
 	}
+
 	public static Poligono rotacao(Poligono poligono, int angulo) {
-		
+
 		pol = new Poligono();
 		double angulo_rad = Math.sin(Math.toRadians(angulo));
-		
-		
+
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
-			
-		
-					
-			pontoX = (int) ((int) (poligono.retornaPonto(i).getX() * (Math.cos(angulo_rad))) - (poligono.retornaPonto(i).getY() * (Math.sin(angulo_rad))));
-			pontoY = (int) ((int) (poligono.retornaPonto(i).getX() * (Math.sin(angulo_rad))) + (poligono.retornaPonto(i).getY() * (Math.cos(angulo_rad))
-				));
+
+			pontoX = (int) ((int) (poligono.retornaPonto(i).getX() * (Math
+					.cos(angulo_rad))) - (poligono.retornaPonto(i).getY() * (Math
+					.sin(angulo_rad))));
+			pontoY = (int) ((int) (poligono.retornaPonto(i).getX() * (Math
+					.sin(angulo_rad))) + (poligono.retornaPonto(i).getY() * (Math
+					.cos(angulo_rad))));
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
 		}
-		
+
 		return pol;
 	}
 
-	public static Poligono cisalhamento(Poligono poligono, boolean orientacao, int angulo){
-		//se vier positivo, é horizontal, caso contrário vertical
+	public static Poligono cisalhamento(Poligono poligono, boolean orientacao,
+			int angulo) {
+		// se vier positivo, é horizontal, caso contrário vertical
 		pol = new Poligono();
 		double angulo_rad = Math.sin(Math.toRadians(angulo));
-		
+
 		if (orientacao) {
-			
-		
-		for (int i = 0; i < poligono.numeroPontos(); i++) {
-			pontoX = (int) (pontoX + pontoY * Math.tan(angulo_rad));
-		}
-		
-		return pol;
-		
-		}
-		
-		else {
-			
-			for (int i = 0; i < poligono.numeroPontos(); i++) {
-				pontoY = (int) (pontoY + pontoX * Math.tan(angulo_rad));
-			}
-			
+
+			for (int i = 0; i < poligono.numeroPontos(); i++)
+				pontoX = (int) (pontoX + pontoY * Math.tan(angulo_rad));
+
 			return pol;
-			
+
+		}
+
+		else {
+
+			for (int i = 0; i < poligono.numeroPontos(); i++)
+				pontoY = (int) (pontoY + pontoX * Math.tan(angulo_rad));
+
+			return pol;
+
 		}
 	}
-	
-	//x = x + y * tan(y); formulas nao matriciais;
-	//y = y + x * tan(x);
+
+	// x = x + y * tan(y); formulas nao matriciais;
+	// y = y + x * tan(x);
 }
