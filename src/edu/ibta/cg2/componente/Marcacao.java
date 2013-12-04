@@ -109,6 +109,7 @@ public class Marcacao extends JButton {
 		int max = poligono.numeroPontos();
 
 		if (max > 2) {
+			
 			for (Ponto p : pontos) {
 
 				if (pontos.size() >= 2) {

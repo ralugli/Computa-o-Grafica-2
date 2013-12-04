@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.GeneralPath;
 
 import javax.swing.JPanel;
 
@@ -42,7 +44,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		Graphics g = (Graphics) this.getGraphics();
+		// Graphics g = (Graphics) this.getGraphics();
 
 		// Ponto ponto;
 		int xPos = e.getX();
@@ -56,10 +58,10 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		marcacao.setBounds(xPos - 10, yPos - 10, 20, 20);
 		add(marcacao);
 
-		Marcacao.paintLines(poligono, g);
+		// Marcacao.paintLines(poligono, g);
 
 		validate();
-		// repaint();
+		repaint();
 
 	}
 
@@ -83,18 +85,44 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	}
 
 	public void mouseMoved(MouseEvent e) {
+
 		int xPos = e.getX();
 		int yPos = e.getY();
 
 		BarraStatus.atualCoordenadas(xPos, yPos);
+
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 	}
 
+	public void Paint(Graphics g) {
+
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		if (poligono.numeroPontos() > 2) {
+
+			GeneralPath polygon = new GeneralPath(GeneralPath.WIND_EVEN_ODD,
+					poligono.numeroPontos());
+			polygon.moveTo(poligono.retornaPonto(0).getX(), poligono
+					.retornaPonto(0).getY());
+
+			for (int indice = 1; indice < poligono.numeroPontos(); indice++) {
+				polygon.lineTo(poligono.retornaPonto(indice).getX(), poligono
+						.retornaPonto(indice).getY());
+			}
+
+			polygon.closePath();
+			g2.draw(polygon);
+			
+		}
+
 	}
 
 }
