@@ -23,6 +23,9 @@ public class Ponto {
 		this.y = y;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "X: " + this.x + " - Y: " + this.y;
+	}
 	
 }

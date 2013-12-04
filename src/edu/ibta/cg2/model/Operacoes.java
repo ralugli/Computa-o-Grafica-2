@@ -10,10 +10,8 @@ public class Operacoes {
 	/**
 	 * @param poligono
 	 * @param orientacao
-	 * @return
-	 * 
-	 *         Se orientacao for 'true', horizontal; caso contrario, na
-	 *         vertical;
+	 *            Se orientacao for 'true', horizontal; caso contrario, na
+	 *            vertical;
 	 */
 	public static Poligono espelhamento(Poligono poligono, boolean orientacao) {
 

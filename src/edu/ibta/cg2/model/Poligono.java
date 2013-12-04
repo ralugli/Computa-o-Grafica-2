@@ -27,9 +27,26 @@ public class Poligono {
 	public void adicionaPonto(Ponto ponto) {
 		this.pontos.add(ponto);
 	}
-	
-	public List<Ponto> getPontos(){
+
+	public List<Ponto> getPontos() {
 		return this.pontos;
+	}
+
+	@Override
+	public String toString() {
+
+		String mensagem = "";
+
+		if (this.pontos.isEmpty())
+			return "Sem pontos";
+		else {
+
+			for (int i = 0; i < this.pontos.size(); i++)
+				mensagem += this.pontos.get(i).toString() + "\n";
+
+			return mensagem;
+		}
+		
 	}
 
 }

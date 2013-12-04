@@ -41,9 +41,9 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+
 		Graphics g = (Graphics) this.getGraphics();
-		
+
 		// Ponto ponto;
 		int xPos = e.getX();
 		int yPos = e.getY();
@@ -52,14 +52,14 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		poligono.adicionaPonto(ponto);
 
 		// Marcação
-		Marcacao marcacao = new Marcacao(xPos, yPos);
-		marcacao.setBounds(xPos -10, yPos -10, 20, 20);
+		Marcacao marcacao = new Marcacao(ponto);
+		marcacao.setBounds(xPos - 10, yPos - 10, 20, 20);
 		add(marcacao);
-		
+
 		Marcacao.paintLines(poligono, g);
-		
+
 		validate();
-//		repaint();
+		// repaint();
 
 	}
 
