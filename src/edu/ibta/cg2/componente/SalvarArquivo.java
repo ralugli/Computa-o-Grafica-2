@@ -8,6 +8,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SalvarArquivo {
 
+	/**
+	 * Disponibiliza a tela para salvar um arquivo.
+	 * 
+	 */
 	public static void salva() {
 
 		ManipuladorXML mxml = new ManipuladorXML();

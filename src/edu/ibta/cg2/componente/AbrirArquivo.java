@@ -8,6 +8,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AbrirArquivo {
 
+	/**
+	 * Disponibiliza a tela para abrir um arquivo.
+	 * 
+	 */
 	public static void escolhe() {
 
 		ManipuladorXML mxml = new ManipuladorXML();
@@ -27,7 +31,7 @@ public class AbrirArquivo {
 		} catch (FileNotFoundException e) {
 
 			System.out.println("e");
-			
+
 		}
 	}
 }
