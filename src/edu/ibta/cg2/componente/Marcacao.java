@@ -5,11 +5,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.JButton;
 
-import edu.ibta.cg2.model.Poligono;
 import edu.ibta.cg2.model.Ponto;
 
 public class Marcacao extends JButton {
@@ -83,43 +81,6 @@ public class Marcacao extends JButton {
 		g.setColor(getForeground());
 		g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
 
-	}
-
-	static void paintLines(Poligono poligono, Graphics g) {
-
-		int max = poligono.numeroPontos();
-
-		if (max > 1) {
-
-			Ponto ultimo_ponto = poligono.retornaPonto(max - 1);
-			Ponto penultimo = poligono.retornaPonto(max - 2);
-
-			System.out.println(ultimo_ponto.toString());
-			System.out.println(penultimo.toString());
-
-			g.drawLine(penultimo.getX(), penultimo.getY(), ultimo_ponto.getX(),
-					ultimo_ponto.getY());
-		}
-
-	}
-
-	protected void paintLineAll(Poligono poligono, Graphics g) {
-
-		List<Ponto> pontos = poligono.getPontos();
-		int max = poligono.numeroPontos();
-
-		if (max > 2) {
-			
-			for (Ponto p : pontos) {
-
-				if (pontos.size() >= 2) {
-					g.drawLine(p.getX(), p.getY(), p.getX() + 1, p.getY());
-					pontos.remove(0);
-				} else if (pontos.size() == 1) {
-
-				}
-			}
-		}
 	}
 
 }

@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -18,7 +20,11 @@ import edu.ibta.cg2.model.Ponto;
 public class AreaPrincipal extends JPanel implements MouseListener,
 		MouseMotionListener {
 
-	static Poligono poligono;
+	@SuppressWarnings("unused")
+	private Menu menu;
+
+	public static Poligono poligono;
+	public static List<Marcacao> marcacoes;
 	private Ponto ponto;
 	private static final long serialVersionUID = -6341888414590484470L;
 	private int LARGURA = Janela.getLARGURA();
@@ -26,6 +32,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 			+ "");
 
 	public AreaPrincipal() {
+
+		menu = new Menu(this);
 
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -38,13 +46,12 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 
 		poligono = new Poligono();
+		marcacoes = new ArrayList<Marcacao>();
 
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
-		// Graphics g = (Graphics) this.getGraphics();
 
 		// Ponto ponto;
 		int xPos = e.getX();
@@ -56,9 +63,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		// Marcação
 		Marcacao marcacao = new Marcacao(ponto);
 		marcacao.setBounds(xPos - 10, yPos - 10, 20, 20);
-		add(marcacao);
-
-		// Marcacao.paintLines(poligono, g);
+		marcacoes.add(marcacao);
+		add(marcacoes.get(marcacoes.size() - 1));
 
 		validate();
 		repaint();
@@ -95,9 +101,6 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-	}
-
-	public void Paint(Graphics g) {
 
 	}
 
@@ -120,7 +123,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 			polygon.closePath();
 			g2.draw(polygon);
-			
+
 		}
 
 	}

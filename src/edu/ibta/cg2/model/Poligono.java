@@ -32,6 +32,10 @@ public class Poligono {
 		return this.pontos;
 	}
 
+	public void destruir() {
+		this.pontos.clear();
+	}
+
 	@Override
 	public String toString() {
 
@@ -46,7 +50,7 @@ public class Poligono {
 
 			return mensagem;
 		}
-		
+
 	}
 
 }

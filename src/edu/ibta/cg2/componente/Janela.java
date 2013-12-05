@@ -30,8 +30,8 @@ public class Janela extends JFrame {
 
 	private final void interfaceUsuario() {
 
-		menu = new Menu();
 		areaPrincipal = new AreaPrincipal();
+		menu = new Menu(areaPrincipal);
 		barraStatus = new BarraStatus();
 
 		try {
@@ -52,7 +52,7 @@ public class Janela extends JFrame {
 					setJMenuBar(menu.getBarraMenu());
 					getContentPane().add(areaPrincipal, BorderLayout.NORTH);
 					getContentPane().add(barraStatus, BorderLayout.SOUTH);
-					
+
 				}
 			}
 		} catch (Exception e) {
