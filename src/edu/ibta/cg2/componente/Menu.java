@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import edu.ibta.cg2.model.Operacoes;
 import edu.ibta.cg2.model.Poligono;
+import edu.ibta.cg2.model.Ponto;
 
 public class Menu {
 
@@ -267,7 +268,7 @@ public class Menu {
 					AreaPrincipal.poligono = Operacoes.translacao(
 							AreaPrincipal.poligono, trans[0], true);
 
-					adicionarMarcacoes();
+					moverMarcacoes();
 
 					ap.validate();
 					ap.repaint();
@@ -309,6 +310,25 @@ public class Menu {
 	}
 
 	private void adicionarMarcacoes() {
+
+		Ponto auxPto;
+		Poligono aux = AreaPrincipal.poligono;
+		Marcacao marcAux;
+
+		for (int i = 0; i < aux.numeroPontos(); i++) {
+			
+			auxPto = aux.retornaPonto(i);
+			marcAux = new Marcacao(auxPto);
+			marcAux.setBounds(auxPto.getX() - 10, auxPto.getY() - 10, 20, 20);
+
+			AreaPrincipal.marcacoes.add(marcAux);
+			
+			ap.add(marcAux);
+		}
+		
+	}
+
+	private void moverMarcacoes() {
 
 		Poligono aux = AreaPrincipal.poligono;
 
