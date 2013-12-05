@@ -11,6 +11,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import edu.ibta.cg2.model.Operacoes;
+import edu.ibta.cg2.model.Poligono;
+
 public class Menu {
 
 	private JMenuBar barraMenu;
@@ -81,6 +84,8 @@ public class Menu {
 			itensArquivo.get(contador++).setMnemonic(KeyEvent.VK_I);
 
 			novo(itensArquivo.get(0));
+			abrir(itensArquivo.get(1));
+			salvar(itensArquivo.get(2));
 			sair(itensArquivo.get(3));
 		}
 
@@ -129,6 +134,8 @@ public class Menu {
 			itens2D.get(contador++).setMnemonic(KeyEvent.VK_R);
 			itens2D.get(contador).setText("Cisalhar");
 			itens2D.get(contador++).setMnemonic(KeyEvent.VK_C);
+
+			transladar(itens2D.get(0));
 		}
 
 		return itens2D;
@@ -183,19 +190,50 @@ public class Menu {
 				int escolha;
 
 				if (ap != null) {
+
 					escolha = JOptionPane.showConfirmDialog(null,
 							"Você tem certeza disto?", "Confirmação",
 							JOptionPane.OK_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
 					if (escolha == JOptionPane.OK_OPTION) {
-						AreaPrincipal.poligono.destruir();
-						AreaPrincipal.marcacoes.clear();
-						ap.removeAll();
-						ap.validate();
-						ap.repaint();
+						limparArea();
 					}
 				}
+
 			}
+		});
+	}
+
+	public void abrir(JMenuItem abrir) {
+
+		abrir.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				limparArea();
+
+				AbrirArquivo.escolhe();
+				adicionarMarcacoes();
+
+				ap.validate();
+				ap.repaint();
+			}
+
+		});
+	}
+
+	public void salvar(JMenuItem salvar) {
+
+		salvar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				SalvarArquivo.salva();
+
+			}
+
 		});
 	}
 
@@ -206,6 +244,38 @@ public class Menu {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
+			}
+
+		});
+	}
+
+	private void transladar(JMenuItem transladar) {
+
+		transladar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				int trans[] = new int[2];
+
+				try {
+
+					trans[0] = Integer.parseInt(JOptionPane.showInputDialog(
+							null, "Transladar em:", "Translação",
+							JOptionPane.QUESTION_MESSAGE));
+
+					AreaPrincipal.poligono = Operacoes.translacao(
+							AreaPrincipal.poligono, trans[0], true);
+
+					adicionarMarcacoes();
+
+					ap.validate();
+					ap.repaint();
+
+				} catch (NumberFormatException e) {
+					// Nada
+				}
+
 			}
 
 		});
@@ -224,6 +294,31 @@ public class Menu {
 								"AUTOCADÊMICO", JOptionPane.PLAIN_MESSAGE, null);
 			}
 		});
+
+	}
+
+	private void limparArea() {
+
+		AreaPrincipal.poligono.destruir();
+		AreaPrincipal.marcacoes.clear();
+
+		ap.removeAll();
+		ap.validate();
+		ap.repaint();
+
+	}
+
+	private void adicionarMarcacoes() {
+
+		Poligono aux = AreaPrincipal.poligono;
+
+		for (int i = 0; i < AreaPrincipal.marcacoes.size(); i++) {
+
+			AreaPrincipal.marcacoes.get(i).setBounds(
+					aux.retornaPonto(i).getX() - 10,
+					aux.retornaPonto(i).getY() - 10, 20, 20);
+
+		}
 
 	}
 

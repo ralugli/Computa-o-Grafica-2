@@ -27,6 +27,10 @@ public class Poligono {
 	public void adicionaPonto(Ponto ponto) {
 		this.pontos.add(ponto);
 	}
+	
+	public void adicionarPontos(List<Ponto> pontos) {
+		this.pontos = pontos;
+	}
 
 	public List<Ponto> getPontos() {
 		return this.pontos;
