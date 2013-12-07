@@ -1,4 +1,4 @@
-package edu.ibta.cg2.componente;
+package edu.ibta.cg2.arquivos;
 
 import java.io.Reader;
 

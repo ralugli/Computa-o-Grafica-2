@@ -1,10 +1,12 @@
-package edu.ibta.cg2.componente;
+package edu.ibta.cg2.arquivos;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import edu.ibta.cg2.componente.AreaPrincipal;
 
 public class SalvarArquivo {
 
