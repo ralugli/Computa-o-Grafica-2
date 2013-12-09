@@ -27,6 +27,12 @@ public class Menu {
 	private List<JMenuItem> itens2D;
 	private List<JMenuItem> itensAjuda;
 
+	private int transl[] = new int[2];
+	private int espel;
+	private int escal[] = new int[2];
+	private int rotac;
+	private int cissal[] = new int[2];
+
 	private AreaPrincipal ap;
 
 	public Menu(AreaPrincipal ap) {
@@ -139,6 +145,10 @@ public class Menu {
 			itens2D.get(contador++).setMnemonic(KeyEvent.VK_C);
 
 			transladar(itens2D.get(0));
+			espelhar(itens2D.get(1));
+			escalonar(itens2D.get(2));
+			rotacionar(itens2D.get(3));
+			cissalhar(itens2D.get(4));
 		}
 
 		return itens2D;
@@ -252,32 +262,210 @@ public class Menu {
 		});
 	}
 
-	private void transladar(JMenuItem transladar) {
+	private void transladar(final JMenuItem transladar) {
 
 		transladar.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 
-				int trans[] = new int[2];
+				Translacao t = new Translacao(null);
 
-				try {
+				if (t.alterarDados()) {
 
-					trans[0] = Integer.parseInt(JOptionPane.showInputDialog(
-							null, "Transladar em:", "Translação",
-							JOptionPane.QUESTION_MESSAGE));
+					transl[0] = t.getOrientacao();
+					transl[1] = t.getValor();
 
-					AreaPrincipal.poligono = Operacoes.translacao(
-							AreaPrincipal.poligono, trans[0], true);
+					if (AreaPrincipal.poligono != null
+							&& AreaPrincipal.marcacoes != null) {
 
-					moverMarcacoes();
+						switch (transl[0]) {
 
-					ap.validate();
-					ap.repaint();
+						case 1:
+							AreaPrincipal.poligono = Operacoes.translacao(
+									AreaPrincipal.poligono, transl[1], true);
+							break;
+						case 2:
+							AreaPrincipal.poligono = Operacoes.translacao(
+									AreaPrincipal.poligono, transl[1], false);
+							break;
+						case 3:
+							AreaPrincipal.poligono = Operacoes.translacao(
+									AreaPrincipal.poligono, transl[1]);
+							break;
+						}
 
-				} catch (NumberFormatException e) {
-					// Nada
+						moverMarcacoes();
+
+					}
+
 				}
+
+				t.dispose();
+
+			}
+
+		});
+	}
+
+	private void espelhar(final JMenuItem espelhar) {
+
+		espelhar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Espelhamento esp = new Espelhamento(null);
+
+				if (esp.alterarDados()) {
+
+					espel = esp.getOrientacao();
+
+					if (AreaPrincipal.poligono != null
+							&& AreaPrincipal.marcacoes != null) {
+
+						switch (espel) {
+
+						case 1:
+							AreaPrincipal.poligono = Operacoes.espelhamento(
+									AreaPrincipal.poligono, true);
+							break;
+						case 2:
+							AreaPrincipal.poligono = Operacoes.espelhamento(
+									AreaPrincipal.poligono, false);
+							break;
+						case 3:
+							AreaPrincipal.poligono = Operacoes
+									.espelhamento(AreaPrincipal.poligono);
+							break;
+						}
+
+						moverMarcacoes();
+
+					}
+
+				}
+
+				esp.dispose();
+
+			}
+
+		});
+	}
+
+	private void escalonar(final JMenuItem espelhar) {
+
+		espelhar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Escalonamento esc = new Escalonamento(null);
+
+				if (esc.alterarDados()) {
+
+					escal[0] = esc.getOrientacao();
+					escal[1] = esc.getValor();
+
+					if (AreaPrincipal.poligono != null
+							&& AreaPrincipal.marcacoes != null) {
+
+						switch (escal[0]) {
+
+						case 1:
+							AreaPrincipal.poligono = Operacoes.escalonamento(
+									AreaPrincipal.poligono, escal[1], true);
+							break;
+						case 2:
+							AreaPrincipal.poligono = Operacoes.escalonamento(
+									AreaPrincipal.poligono, escal[1], false);
+							break;
+						case 3:
+							AreaPrincipal.poligono = Operacoes.escalonamento(
+									AreaPrincipal.poligono, escal[1]);
+							break;
+						}
+
+						moverMarcacoes();
+
+					}
+
+				}
+
+				esc.dispose();
+
+			}
+
+		});
+	}
+
+	private void rotacionar(final JMenuItem rotacionar) {
+
+		rotacionar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Rotacao rot = new Rotacao(null);
+
+				if (rot.alterarDados()) {
+
+					rotac = rot.getAngulo();
+
+					if (AreaPrincipal.poligono != null
+							&& AreaPrincipal.marcacoes != null) {
+
+						AreaPrincipal.poligono = Operacoes.rotacao(
+								AreaPrincipal.poligono, rotac);
+						moverMarcacoes();
+
+					}
+
+				}
+
+				rot.dispose();
+
+			}
+
+		});
+	}
+
+	private void cissalhar(final JMenuItem cissalhar) {
+
+		cissalhar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Cissalhamento ciss = new Cissalhamento(null);
+
+				if (ciss.alterarDados()) {
+
+					cissal[0] = ciss.getOrientacao();
+					cissal[1] = ciss.getAngulo();
+
+					if (AreaPrincipal.poligono != null
+							&& AreaPrincipal.marcacoes != null) {
+
+						switch (cissal[0]) {
+
+						case 1:
+							AreaPrincipal.poligono = Operacoes.cisalhamento(
+									AreaPrincipal.poligono, cissal[1], true);
+							break;
+						case 2:
+							AreaPrincipal.poligono = Operacoes.cisalhamento(
+									AreaPrincipal.poligono, cissal[1], false);
+							break;
+						}
+
+						moverMarcacoes();
+
+					}
+
+				}
+
+				ciss.dispose();
 
 			}
 
@@ -318,16 +506,16 @@ public class Menu {
 		Marcacao marcAux;
 
 		for (int i = 0; i < aux.numeroPontos(); i++) {
-			
+
 			auxPto = aux.retornaPonto(i);
 			marcAux = new Marcacao(auxPto);
 			marcAux.setBounds(auxPto.getX() - 10, auxPto.getY() - 10, 20, 20);
 
 			AreaPrincipal.marcacoes.add(marcAux);
-			
+
 			ap.add(marcAux);
 		}
-		
+
 	}
 
 	private void moverMarcacoes() {

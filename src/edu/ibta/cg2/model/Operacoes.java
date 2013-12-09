@@ -19,7 +19,7 @@ public class Operacoes {
 
 		if (orientacao) {
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
-				pontoX = poligono.retornaPonto(i).getX() - 1;
+				pontoX = poligono.retornaPonto(i).getX() * (-1);
 				pontoY = poligono.retornaPonto(i).getY();
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
@@ -27,7 +27,7 @@ public class Operacoes {
 		} else {
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
 				pontoX = poligono.retornaPonto(i).getX();
-				pontoY = poligono.retornaPonto(i).getY() - 1;
+				pontoY = poligono.retornaPonto(i).getY() * (-1);
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
 			}
@@ -42,8 +42,8 @@ public class Operacoes {
 		pol = new Poligono();
 
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
-			pontoX = poligono.retornaPonto(i).getX() - 1;
-			pontoY = poligono.retornaPonto(i).getY() - 1;
+			pontoX = poligono.retornaPonto(i).getX() * (-1);
+			pontoY = poligono.retornaPonto(i).getY() * (-1);
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
 		}
@@ -174,16 +174,26 @@ public class Operacoes {
 		return pol;
 	}
 
-	public static Poligono cisalhamento(Poligono poligono, boolean orientacao,
-			int angulo) {
-		// se vier positivo, é horizontal, caso contrário vertical
+	public static Poligono cisalhamento(Poligono poligono, int angulo,
+			boolean orientacao) {
+
 		pol = new Poligono();
 		double angulo_rad = Math.sin(Math.toRadians(angulo));
 
 		if (orientacao) {
 
-			for (int i = 0; i < poligono.numeroPontos(); i++)
+			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
+				pontoX = poligono.retornaPonto(i).getX();
+				pontoY = poligono.retornaPonto(i).getY();
+
 				pontoX = (int) (pontoX + pontoY * Math.tan(angulo_rad));
+
+				ponto = new Ponto(pontoX, pontoY);
+
+				pol.adicionaPonto(ponto);
+
+			}
 
 			return pol;
 
@@ -191,14 +201,22 @@ public class Operacoes {
 
 		else {
 
-			for (int i = 0; i < poligono.numeroPontos(); i++)
+			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
+				pontoX = poligono.retornaPonto(i).getX();
+				pontoY = poligono.retornaPonto(i).getY();
+
 				pontoY = (int) (pontoY + pontoX * Math.tan(angulo_rad));
+
+				ponto = new Ponto(pontoX, pontoY);
+
+				pol.adicionaPonto(ponto);
+
+			}
 
 			return pol;
 
 		}
 	}
-
-	// x = x + y * tan(y); formulas nao matriciais;
-	// y = y + x * tan(x);
+	
 }

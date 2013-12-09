@@ -21,6 +21,7 @@ public class AbrirArquivo {
 		try {
 
 			JFileChooser chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 			chooser.setFileFilter(new FileNameExtensionFilter(".AUT", "aut"));
 			int retorno = chooser.showOpenDialog(null);
 
