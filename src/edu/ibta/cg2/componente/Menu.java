@@ -514,8 +514,12 @@ public class Menu {
 			AreaPrincipal.marcacoes.add(marcAux);
 
 			ap.add(marcAux);
+			
 		}
 
+		ap.validate();
+		ap.repaint();
+		
 	}
 
 	private void moverMarcacoes() {
@@ -529,6 +533,9 @@ public class Menu {
 					aux.retornaPonto(i).getY() - 10, 20, 20);
 
 		}
+		
+		ap.validate();
+		ap.repaint();
 
 	}
 

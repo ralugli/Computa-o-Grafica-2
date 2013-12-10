@@ -15,22 +15,60 @@ public class Operacoes {
 	 */
 	public static Poligono espelhamento(Poligono poligono, boolean orientacao) {
 
+		int pix = 0;
+		int piy = 0;
+
 		pol = new Poligono();
 
 		if (orientacao) {
+
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
-				pontoX = poligono.retornaPonto(i).getX() * (-1);
-				pontoY = poligono.retornaPonto(i).getY();
-				ponto = new Ponto(pontoX, pontoY);
-				pol.adicionaPonto(ponto);
-			}
-		} else {
-			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 				pontoX = poligono.retornaPonto(i).getX();
-				pontoY = poligono.retornaPonto(i).getY() * (-1);
+				pontoY = poligono.retornaPonto(i).getY();
+
+				if (i == 0) {
+
+					pix = pontoX;
+					piy = pontoY;
+
+				}
+
+				pontoX = pontoX * (-1);
+
+				ponto = new Ponto(pontoX, pontoY);
+
+				pol.adicionaPonto(ponto);
+
+			}
+
+			pix = 2 * pix;
+			pol = translacao(pol, pix, true);
+
+		} else {
+
+			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
+				pontoX = poligono.retornaPonto(i).getX();
+				pontoY = poligono.retornaPonto(i).getY();
+
+				if (i == 0) {
+
+					pix = pontoX;
+					piy = pontoY;
+
+				}
+
+				pontoY = pontoY * (-1);
+
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
+
 			}
+
+			piy = 2 * piy;
+			pol = translacao(pol, piy, false);
+
 		}
 
 		return pol;
@@ -39,16 +77,38 @@ public class Operacoes {
 
 	public static Poligono espelhamento(Poligono poligono) {
 
+		int pix = 0;
+		int piy = 0;
+
 		pol = new Poligono();
 
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
-			pontoX = poligono.retornaPonto(i).getX() * (-1);
-			pontoY = poligono.retornaPonto(i).getY() * (-1);
+
+			pontoX = poligono.retornaPonto(i).getX();
+			pontoY = poligono.retornaPonto(i).getY();
+
+			if (i == 0) {
+
+				pix = pontoX;
+				piy = pontoY;
+
+			}
+
+			pontoX = pontoX * (-1);
+			pontoY = pontoY * (-1);
+
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
+
 		}
+		
+		pix = 2 * pix;
+		piy = 2 * piy;
+		
+		pol = translacao(pol, pix, piy);
 
 		return pol;
+
 	}
 
 	public static Poligono translacao(Poligono poligono, int distancia,
@@ -57,19 +117,27 @@ public class Operacoes {
 		pol = new Poligono();
 
 		if (orientacao) {
+
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 				pontoX = poligono.retornaPonto(i).getX() + distancia;
 				pontoY = poligono.retornaPonto(i).getY();
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
+
 			}
+
 		} else {
+
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 				pontoX = poligono.retornaPonto(i).getX();
 				pontoY = poligono.retornaPonto(i).getY() + distancia;
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
+
 			}
+
 		}
 
 		return pol;
@@ -145,10 +213,12 @@ public class Operacoes {
 		pol = new Poligono();
 
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 			pontoX = poligono.retornaPonto(i).getX() * dimensao;
 			pontoY = poligono.retornaPonto(i).getY() * dimensao;
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
+
 		}
 
 		return pol;
@@ -169,9 +239,11 @@ public class Operacoes {
 					.cos(angulo_rad))));
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
+
 		}
 
 		return pol;
+
 	}
 
 	public static Poligono cisalhamento(Poligono poligono, int angulo,
@@ -217,6 +289,7 @@ public class Operacoes {
 			return pol;
 
 		}
+
 	}
-	
+
 }
