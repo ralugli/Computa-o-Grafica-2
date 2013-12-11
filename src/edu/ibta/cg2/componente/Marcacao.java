@@ -22,17 +22,20 @@ public class Marcacao extends JButton {
 	 *            0 para Côncavo; 1 para Convexo
 	 */
 	public Marcacao(Ponto posicao, int tipoPonto) {
+		
 		super("");
 
 		this.posicao = posicao;
 
 		switch (tipoPonto) {
+		
 		case 0:
 			this.bgcor = Color.GREEN;
 			break;
 		case 1:
 			this.bgcor = Color.RED;
 			break;
+			
 		}
 
 		formaBotao();
@@ -40,12 +43,14 @@ public class Marcacao extends JButton {
 	}
 
 	public Marcacao(Ponto posicao) {
+		
 		super("");
 
 		this.posicao = posicao;
 		this.bgcor = Color.DARK_GRAY;
 
 		formaBotao();
+		
 	}
 
 	private void formaBotao() {
@@ -68,7 +73,7 @@ public class Marcacao extends JButton {
 	}
 
 	protected void paintComponent(Graphics g) {
-
+		
 		g.setColor(bgcor);
 		g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
 
@@ -82,5 +87,5 @@ public class Marcacao extends JButton {
 		g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
 
 	}
-
+	
 }

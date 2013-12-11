@@ -33,6 +33,10 @@ public class Ponto {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public int getOrientacao() {
+		return this.orientacao;
+	}
 
 	@Override
 	public String toString() {

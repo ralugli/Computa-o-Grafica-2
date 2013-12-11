@@ -54,6 +54,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
+		Marcacao marcacao;
+
 		// Ponto ponto;
 		int xPos = e.getX();
 		int yPos = e.getY();
@@ -62,7 +64,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		poligono.adicionaPonto(ponto);
 
 		// Marcação
-		Marcacao marcacao = new Marcacao(ponto);
+		marcacao = new Marcacao(ponto);
 		marcacao.setBounds(xPos - 10, yPos - 10, 20, 20);
 		marcacoes.add(marcacao);
 		add(marcacoes.get(marcacoes.size() - 1));
@@ -106,7 +108,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 	}
 
 	public void paintComponent(Graphics g) {
-		
+
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
@@ -123,12 +125,26 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 				polygon.lineTo(poligono.retornaPonto(indice).getX(), poligono
 						.retornaPonto(indice).getY());
 			}
+			
+			removeAll();
+
+			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
+				Marcacao marcAux = new Marcacao(poligono.retornaPonto(i),
+						poligono.retornaPonto(i).getOrientacao());
+
+				marcAux.setBounds(poligono.retornaPonto(i).getX() - 10,
+						poligono.retornaPonto(i).getY() - 10, 20, 20);
+				add(marcAux);
+
+				validate();
+				repaint();
+
+			}
 
 			polygon.closePath();
 			g2.draw(polygon);
-			
-			System.out.print(poligono.toString());
-			
+
 		}
 
 	}
