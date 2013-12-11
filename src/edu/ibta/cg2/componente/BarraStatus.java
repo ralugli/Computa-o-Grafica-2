@@ -25,6 +25,6 @@ public class BarraStatus extends JPanel {
 	}
 
 	public static void atualArea(double area) {
-		areaTotal.setText("Area total: " + area);
+		areaTotal.setText("Área total: " + area);
 	}
 }

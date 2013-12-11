@@ -496,6 +496,8 @@ public class Menu {
 		ap.removeAll();
 		ap.validate();
 		ap.repaint();
+		
+		BarraStatus.atualArea(0.0);
 
 	}
 
