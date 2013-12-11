@@ -20,6 +20,7 @@ public class Translacao extends JDialog {
 
 	private JPanel jContentPane = null;
 	private JLabel lblOrientacao = null;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cmbOrientacao = null;
 	private JLabel lblValor = null;
 	private JTextField txtValor = null;
@@ -92,6 +93,7 @@ public class Translacao extends JDialog {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private JComboBox getCmbOrientacao() {
 
 		if (cmbOrientacao == null)

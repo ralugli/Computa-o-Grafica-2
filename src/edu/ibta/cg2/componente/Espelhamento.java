@@ -18,6 +18,7 @@ public class Espelhamento extends JDialog {
 
 	private JPanel jContentPane = null;
 	private JLabel lblOrientacao = null;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cmbOrientacao = null;
 	private JPanel pnlButtons = null;
 	private JButton btnOk = null;
@@ -84,6 +85,7 @@ public class Espelhamento extends JDialog {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private JComboBox getCmbOrientacao() {
 
 		if (cmbOrientacao == null)

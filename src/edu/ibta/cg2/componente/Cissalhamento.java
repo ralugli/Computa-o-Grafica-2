@@ -20,6 +20,7 @@ public class Cissalhamento extends JDialog {
 
 	private JPanel jContentPane = null;
 	private JLabel lblOrientacao = null;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cmbOrientacao = null;
 	private JLabel lblAngulo = null;
 	private JTextField txtAngulo = null;
@@ -92,6 +93,7 @@ public class Cissalhamento extends JDialog {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private JComboBox getCmbOrientacao() {
 
 		if (cmbOrientacao == null)
