@@ -101,10 +101,10 @@ public class Operacoes {
 			pol.adicionaPonto(ponto);
 
 		}
-		
+
 		pix = 2 * pix;
 		piy = 2 * piy;
-		
+
 		pol = translacao(pol, pix, piy);
 
 		return pol;
@@ -139,6 +139,8 @@ public class Operacoes {
 			}
 
 		}
+
+		isConvexo(pol);
 
 		return pol;
 	}
@@ -289,6 +291,41 @@ public class Operacoes {
 			return pol;
 
 		}
+
+	}
+
+	public static void isConvexo(Poligono p) {
+
+		for (int i = 0; i < p.numeroPontos(); i++) {
+
+			Ponto p1 = p.retornaPonto(i);
+			Ponto p2 = p.retornaPonto(i + 1);
+			Ponto p3 = p.retornaPonto(i + 2);
+			
+			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(), p3.getY()) < 0) {
+				//System.out.prinln
+			}
+
+			else {
+				// é concavo
+			}
+		}
+
+	}
+
+	private static double area(int x1, int y1, int x2, int y2, int x3, int y3) {
+		double areaSum = 0;
+
+		areaSum += x1 * (y3 - y2);
+		areaSum += x2 * (y1 - y3);
+		areaSum += x3 * (y2 - y1);
+
+		/*
+		 * for actual area, we need to multiple areaSum * 0.5, but we are only
+		 * interested in the sign of the area (+/-)
+		 */
+
+		return areaSum;
 
 	}
 
