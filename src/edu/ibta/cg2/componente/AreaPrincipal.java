@@ -110,6 +110,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
+		poligono = Operacoes.isConvexo(poligono);
 
 		if (poligono.numeroPontos() > 2) {
 
@@ -126,8 +127,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 			polygon.closePath();
 			g2.draw(polygon);
 			
-			Operacoes.isConvexo(poligono);
-
+			System.out.print(poligono.toString());
+			
 		}
 
 	}

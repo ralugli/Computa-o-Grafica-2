@@ -294,7 +294,7 @@ public class Operacoes {
 
 	}
 
-	public static void isConvexo(Poligono p) {
+	public static Poligono isConvexo(Poligono p) {
 
 		Ponto p1;
 		Ponto p2;
@@ -302,6 +302,8 @@ public class Operacoes {
 
 		int prev;
 		int next;
+		
+		Poligono novo_poligono = new Poligono();
 
 		for (int i = 0; i < p.numeroPontos(); i++) {
 
@@ -320,15 +322,19 @@ public class Operacoes {
 
 			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(),
 					p3.getY()) < 0) {
-				System.out.println((i + 1) + " " + p2.toString()
-						+ " é convexo.");
+//				System.out.println((i + 1) + " " + p2.toString()
+//						+ " é convexo.");
+				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 0));
 			}
 
 			else {
-				System.out.println((i + 1) + " " + p2.toString()
-						+ " é concavo.");
+//				System.out.println((i + 1) + " " + p2.toString()
+//						+ " é concavo.");
+				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 1));
 			}
+			
 		}
+		return novo_poligono;
 
 	}
 
