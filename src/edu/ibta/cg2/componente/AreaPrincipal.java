@@ -144,6 +144,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 			polygon.closePath();
 			g2.draw(polygon);
+			
+			Operacoes.areaTotal(poligono);
 
 		}
 

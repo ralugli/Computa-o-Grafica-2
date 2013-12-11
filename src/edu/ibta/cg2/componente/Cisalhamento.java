@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Cissalhamento extends JDialog {
+public class Cisalhamento extends JDialog {
 
 	private static final long serialVersionUID = 8674176711982556932L;
 
@@ -29,7 +29,7 @@ public class Cissalhamento extends JDialog {
 	private JButton btnCancelar = null;
 	protected boolean okSelecionado;
 
-	public Cissalhamento(Frame owner) {
+	public Cisalhamento(Frame owner) {
 
 		super(owner);
 		initialize();
@@ -148,7 +148,7 @@ public class Cissalhamento extends JDialog {
 
 					} catch (NumberFormatException nfe) {
 
-						JOptionPane.showMessageDialog(Cissalhamento.this,
+						JOptionPane.showMessageDialog(Cisalhamento.this,
 								"Deverá ser um valor inteiro.");
 
 					}

@@ -1,5 +1,7 @@
 package edu.ibta.cg2.model;
 
+import edu.ibta.cg2.componente.BarraStatus;
+
 public class Operacoes {
 
 	private static int pontoX;
@@ -302,7 +304,7 @@ public class Operacoes {
 
 		int prev;
 		int next;
-		
+
 		Poligono novo_poligono = new Poligono();
 
 		for (int i = 0; i < p.numeroPontos(); i++) {
@@ -322,17 +324,17 @@ public class Operacoes {
 
 			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(),
 					p3.getY()) < 0) {
-//				System.out.println((i + 1) + " " + p2.toString()
-//						+ " é convexo.");
+				// System.out.println((i + 1) + " " + p2.toString()
+				// + " é convexo.");
 				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 0));
 			}
 
 			else {
-//				System.out.println((i + 1) + " " + p2.toString()
-//						+ " é concavo.");
+				// System.out.println((i + 1) + " " + p2.toString()
+				// + " é concavo.");
 				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 1));
 			}
-			
+
 		}
 		return novo_poligono;
 
@@ -352,6 +354,26 @@ public class Operacoes {
 
 		return areaSum;
 
+	}
+
+	public static void areaTotal(Poligono p) {
+		
+		double area = 0; // Accumulates area in the loop
+		int j = p.numeroPontos() - 1; // The last vertex is the 'previous' one
+										// to the first
+
+		for (int i = 0; i < p.numeroPontos(); i++) {
+			
+			area += (p.retornaPonto(j).getX() + p.retornaPonto(i).getX())
+					* (p.retornaPonto(j).getY() - p.retornaPonto(i).getY());
+			j = i; // j is previous vertex to i
+		}
+		
+		if(area < 0)
+			area *= (-1);
+		
+		BarraStatus.atualArea(area / 2);
+		
 	}
 
 }

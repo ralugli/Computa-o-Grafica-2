@@ -31,7 +31,7 @@ public class Menu {
 	private int espel;
 	private int escal[] = new int[2];
 	private int rotac;
-	private int cissal[] = new int[2];
+	private int cisal[] = new int[2];
 
 	private AreaPrincipal ap;
 
@@ -437,25 +437,25 @@ public class Menu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Cissalhamento ciss = new Cissalhamento(null);
+				Cisalhamento ciss = new Cisalhamento(null);
 
 				if (ciss.alterarDados()) {
 
-					cissal[0] = ciss.getOrientacao();
-					cissal[1] = ciss.getAngulo();
+					cisal[0] = ciss.getOrientacao();
+					cisal[1] = ciss.getAngulo();
 
 					if (AreaPrincipal.poligono != null
 							&& AreaPrincipal.marcacoes != null) {
 
-						switch (cissal[0]) {
+						switch (cisal[0]) {
 
 						case 1:
 							AreaPrincipal.poligono = Operacoes.cisalhamento(
-									AreaPrincipal.poligono, cissal[1], true);
+									AreaPrincipal.poligono, cisal[1], true);
 							break;
 						case 2:
 							AreaPrincipal.poligono = Operacoes.cisalhamento(
-									AreaPrincipal.poligono, cissal[1], false);
+									AreaPrincipal.poligono, cisal[1], false);
 							break;
 						}
 
