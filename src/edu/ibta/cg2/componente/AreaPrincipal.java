@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import edu.ibta.cg2.model.Operacoes;
 import edu.ibta.cg2.model.Poligono;
 import edu.ibta.cg2.model.Ponto;
 
@@ -124,6 +125,8 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 			polygon.closePath();
 			g2.draw(polygon);
+			
+			Operacoes.isConvexo(poligono);
 
 		}
 

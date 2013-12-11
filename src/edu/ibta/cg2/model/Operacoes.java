@@ -296,18 +296,37 @@ public class Operacoes {
 
 	public static void isConvexo(Poligono p) {
 
+		Ponto p1;
+		Ponto p2;
+		Ponto p3;
+
+		int prev;
+		int next;
+
 		for (int i = 0; i < p.numeroPontos(); i++) {
 
-			Ponto p1 = p.retornaPonto(i);
-			Ponto p2 = p.retornaPonto(i + 1);
-			Ponto p3 = p.retornaPonto(i + 2);
-			
-			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(), p3.getY()) < 0) {
-				//System.out.prinln
+			p2 = p.retornaPonto(i);
+
+			prev = i - 1;
+			next = i + 1;
+
+			if (prev == -1)
+				prev = p.numeroPontos() - 1;
+			if (next == p.numeroPontos())
+				next = 0;
+
+			p1 = p.retornaPonto(prev);
+			p3 = p.retornaPonto(next);
+
+			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(),
+					p3.getY()) < 0) {
+				System.out.println((i + 1) + " " + p2.toString()
+						+ " é convexo.");
 			}
 
 			else {
-				// é concavo
+				System.out.println((i + 1) + " " + p2.toString()
+						+ " é concavo.");
 			}
 		}
 
