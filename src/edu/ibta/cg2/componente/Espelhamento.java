@@ -18,7 +18,7 @@ public class Espelhamento extends JDialog {
 
 	private JPanel jContentPane = null;
 	private JLabel lblOrientacao = null;
-	private JComboBox<String> cmbOrientacao = null;
+	private JComboBox cmbOrientacao = null;
 	private JPanel pnlButtons = null;
 	private JButton btnOk = null;
 	private JButton btnCancelar = null;
@@ -84,10 +84,10 @@ public class Espelhamento extends JDialog {
 
 	}
 
-	private JComboBox<String> getCmbOrientacao() {
+	private JComboBox getCmbOrientacao() {
 
 		if (cmbOrientacao == null)
-			cmbOrientacao = new JComboBox<String>(new String[] { "Horizontal",
+			cmbOrientacao = new JComboBox(new String[] { "Horizontal",
 					"Vertical", "Ambos" });
 
 		return cmbOrientacao;

@@ -20,7 +20,7 @@ public class Translacao extends JDialog {
 
 	private JPanel jContentPane = null;
 	private JLabel lblOrientacao = null;
-	private JComboBox<String> cmbOrientacao = null;
+	private JComboBox cmbOrientacao = null;
 	private JLabel lblValor = null;
 	private JTextField txtValor = null;
 	private JPanel pnlButtons = null;
@@ -92,10 +92,10 @@ public class Translacao extends JDialog {
 
 	}
 
-	private JComboBox<String> getCmbOrientacao() {
+	private JComboBox getCmbOrientacao() {
 
 		if (cmbOrientacao == null)
-			cmbOrientacao = new JComboBox<String>(new String[] { "Horizontal",
+			cmbOrientacao = new JComboBox(new String[] { "Horizontal",
 					"Vertical", "Ambos" });
 
 		return cmbOrientacao;
