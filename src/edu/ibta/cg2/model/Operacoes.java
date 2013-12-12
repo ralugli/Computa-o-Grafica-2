@@ -230,21 +230,45 @@ public class Operacoes {
 
 	public static Poligono rotacao(Poligono poligono, int angulo) {
 
+		int pix = 0;
+		int piy = 0;
+
+		String x;
+		String y;
+
 		pol = new Poligono();
-		double angulo_rad = Math.sin(Math.toRadians(angulo));
+		double angulo_rad = Math.toRadians(angulo);
 
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
 
-			pontoX = (int) ((int) (poligono.retornaPonto(i).getX() * (Math
-					.cos(angulo_rad))) - (poligono.retornaPonto(i).getY() * (Math
-					.sin(angulo_rad))));
-			pontoY = (int) ((int) (poligono.retornaPonto(i).getX() * (Math
-					.sin(angulo_rad))) + (poligono.retornaPonto(i).getY() * (Math
-					.cos(angulo_rad))));
+			pontoX = poligono.retornaPonto(i).getX();
+			pontoY = poligono.retornaPonto(i).getY();
+
+			if (i == 0) {
+
+				pix = pontoX;
+				piy = pontoY;
+
+			}
+
+			x = ((pontoX * (Math.cos(angulo_rad))) - (pontoY * (Math
+					.sin(angulo_rad)))) + "";
+
+			y = ((pontoX * (Math.sin(angulo_rad))) + (pontoY * (Math
+					.cos(angulo_rad)))) + "";
+
+			pontoX = (int) Math.round(Double.parseDouble(x));
+			pontoY = (int) Math.round(Double.parseDouble(y));
+
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
-
+			
 		}
+
+		pix -= pol.retornaPonto(0).getX();
+		piy -= pol.retornaPonto(0).getY();
+
+		translacao(pol, pix, piy);
 
 		return pol;
 
@@ -323,57 +347,49 @@ public class Operacoes {
 			p3 = p.retornaPonto(next);
 
 			if (area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(),
-					p3.getY()) < 0) {
-				// System.out.println((i + 1) + " " + p2.toString()
-				// + " é convexo.");
-				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 0));
-			}
+					p3.getY()) < 0)
 
-			else {
-				// System.out.println((i + 1) + " " + p2.toString()
-				// + " é concavo.");
+				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 0));
+
+			else
 				novo_poligono.adicionaPonto(new Ponto(p2.getX(), p2.getY(), 1));
-			}
 
 		}
+
 		return novo_poligono;
 
 	}
 
 	private static double area(int x1, int y1, int x2, int y2, int x3, int y3) {
+
 		double areaSum = 0;
 
 		areaSum += x1 * (y3 - y2);
 		areaSum += x2 * (y1 - y3);
 		areaSum += x3 * (y2 - y1);
 
-		/*
-		 * for actual area, we need to multiple areaSum * 0.5, but we are only
-		 * interested in the sign of the area (+/-)
-		 */
-
 		return areaSum;
 
 	}
 
 	public static void areaTotal(Poligono p) {
-		
+
 		double area = 0; // Accumulates area in the loop
 		int j = p.numeroPontos() - 1; // The last vertex is the 'previous' one
 										// to the first
 
 		for (int i = 0; i < p.numeroPontos(); i++) {
-			
+
 			area += (p.retornaPonto(j).getX() + p.retornaPonto(i).getX())
 					* (p.retornaPonto(j).getY() - p.retornaPonto(i).getY());
 			j = i; // j is previous vertex to i
 		}
-		
-		if(area < 0)
+
+		if (area < 0)
 			area *= (-1);
-		
+
 		BarraStatus.atualArea(area / 2);
-		
+
 	}
 
 }
