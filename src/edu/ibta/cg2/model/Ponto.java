@@ -5,17 +5,21 @@ public class Ponto {
 	private int x;
 	private int y;
 	private int orientacao;
-	
+
 	public Ponto(int x, int y) {
+
 		this.x = x;
 		this.y = y;
-		this.orientacao = 3;
+		this.orientacao = -1;
+
 	}
-	
-	public Ponto(int x, int y, int orientacao){
+
+	public Ponto(int x, int y, int orientacao) {
+
 		this.x = x;
 		this.y = y;
 		this.orientacao = orientacao;
+
 	}
 
 	public int getX() {
@@ -33,14 +37,15 @@ public class Ponto {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	public int getOrientacao() {
 		return this.orientacao;
 	}
 
 	@Override
 	public String toString() {
-		return "X: " + this.x + " - Y: " + this.y + " - Orientação: "+ this.orientacao;
+		return "X: " + this.x + " - Y: " + this.y + " - Orientação: "
+				+ this.orientacao;
 	}
 
 }

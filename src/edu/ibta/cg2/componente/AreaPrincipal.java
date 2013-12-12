@@ -125,16 +125,16 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 				polygon.lineTo(poligono.retornaPonto(indice).getX(), poligono
 						.retornaPonto(indice).getY());
 			}
-			
+
 			removeAll();
 
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
 
-				Marcacao marcAux = new Marcacao(poligono.retornaPonto(i),
-						poligono.retornaPonto(i).getOrientacao());
+				Marcacao marcAux = new Marcacao(poligono.retornaPonto(i));
 
 				marcAux.setBounds(poligono.retornaPonto(i).getX() - 10,
 						poligono.retornaPonto(i).getY() - 10, 20, 20);
+
 				add(marcAux);
 
 				validate();
@@ -144,7 +144,7 @@ public class AreaPrincipal extends JPanel implements MouseListener,
 
 			polygon.closePath();
 			g2.draw(polygon);
-			
+
 			Operacoes.areaTotal(poligono);
 
 		}
