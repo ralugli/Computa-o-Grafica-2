@@ -73,6 +73,8 @@ public class Operacoes {
 
 		}
 
+		isConvexo(pol);
+
 		return pol;
 
 	}
@@ -108,6 +110,8 @@ public class Operacoes {
 		piy = 2 * piy;
 
 		pol = translacao(pol, pix, piy);
+
+		isConvexo(pol);
 
 		return pol;
 
@@ -151,13 +155,19 @@ public class Operacoes {
 			int distanciaY) {
 
 		pol = new Poligono();
+
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
 			pontoX = poligono.retornaPonto(i).getX() + distanciaX;
 			pontoY = poligono.retornaPonto(i).getY() + distanciaY;
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
+
 		}
+
+		isConvexo(pol);
+
 		return pol;
+
 	}
 
 	public static Poligono translacao(Poligono poligono, int distancia) {
@@ -165,11 +175,16 @@ public class Operacoes {
 		pol = new Poligono();
 
 		for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 			pontoX = poligono.retornaPonto(i).getX() + distancia;
 			pontoY = poligono.retornaPonto(i).getY() + distancia;
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
+
 		}
+
+		isConvexo(pol);
+
 		return pol;
 	}
 
@@ -180,19 +195,28 @@ public class Operacoes {
 
 		if (orientacao) {
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 				pontoX = poligono.retornaPonto(i).getX() * dimensao;
 				pontoY = poligono.retornaPonto(i).getY();
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
+
 			}
+
 		} else {
+
 			for (int i = 0; i < poligono.numeroPontos(); i++) {
+
 				pontoX = poligono.retornaPonto(i).getX();
 				pontoY = poligono.retornaPonto(i).getY() * dimensao;
 				ponto = new Ponto(pontoX, pontoY);
 				pol.adicionaPonto(ponto);
+
 			}
+
 		}
+
+		isConvexo(pol);
 
 		return pol;
 	}
@@ -209,6 +233,8 @@ public class Operacoes {
 			pol.adicionaPonto(ponto);
 		}
 
+		isConvexo(pol);
+
 		return pol;
 	}
 
@@ -224,6 +250,8 @@ public class Operacoes {
 			pol.adicionaPonto(ponto);
 
 		}
+
+		isConvexo(pol);
 
 		return pol;
 	}
@@ -262,13 +290,15 @@ public class Operacoes {
 
 			ponto = new Ponto(pontoX, pontoY);
 			pol.adicionaPonto(ponto);
-			
+
 		}
 
 		pix -= pol.retornaPonto(0).getX();
 		piy -= pol.retornaPonto(0).getY();
 
 		translacao(pol, pix, piy);
+
+		isConvexo(pol);
 
 		return pol;
 
@@ -277,8 +307,11 @@ public class Operacoes {
 	public static Poligono cisalhamento(Poligono poligono, int angulo,
 			boolean orientacao) {
 
+		int pix = 0;
+		int piy = 0;
+		
 		pol = new Poligono();
-		double angulo_rad = Math.sin(Math.toRadians(angulo));
+		double angulo_rad = Math.toRadians(angulo);
 
 		if (orientacao) {
 
@@ -286,6 +319,13 @@ public class Operacoes {
 
 				pontoX = poligono.retornaPonto(i).getX();
 				pontoY = poligono.retornaPonto(i).getY();
+				
+				if(i == 0) {
+					
+					pix = pontoX;
+					piy = pontoY;
+					
+				}
 
 				pontoX = (int) (pontoX + pontoY * Math.tan(angulo_rad));
 
@@ -295,8 +335,6 @@ public class Operacoes {
 
 			}
 
-			return pol;
-
 		}
 
 		else {
@@ -305,6 +343,14 @@ public class Operacoes {
 
 				pontoX = poligono.retornaPonto(i).getX();
 				pontoY = poligono.retornaPonto(i).getY();
+				
+				if(i == 0) {
+					
+					pix = pontoX;
+					piy = pontoY;
+					
+				}
+
 
 				pontoY = (int) (pontoY + pontoX * Math.tan(angulo_rad));
 
@@ -314,9 +360,16 @@ public class Operacoes {
 
 			}
 
-			return pol;
-
 		}
+		
+		pix -= pol.retornaPonto(0).getX();
+		piy -= pol.retornaPonto(0).getY();
+
+		translacao(pol, pix, piy);
+
+		isConvexo(pol);
+
+		return pol;
 
 	}
 
@@ -374,15 +427,15 @@ public class Operacoes {
 
 	public static void areaTotal(Poligono p) {
 
-		double area = 0; // Accumulates area in the loop
-		int j = p.numeroPontos() - 1; // The last vertex is the 'previous' one
-										// to the first
+		double area = 0;
+		int j = p.numeroPontos() - 1;
 
 		for (int i = 0; i < p.numeroPontos(); i++) {
 
 			area += (p.retornaPonto(j).getX() + p.retornaPonto(i).getX())
 					* (p.retornaPonto(j).getY() - p.retornaPonto(i).getY());
-			j = i; // j is previous vertex to i
+			j = i;
+
 		}
 
 		if (area < 0)
